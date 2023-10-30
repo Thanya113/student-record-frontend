@@ -15,7 +15,7 @@ const Contact = () => {
     e.preventDefault();
 
     // Fetch all student emails from the database
-    const response = await fetch("http://localhost:8081/fetchStudents");
+    const response = await fetch("https://student-server-tamd.onrender.com/fetchStudents");
     const students = await response.json();
     const studentEmails = students.data.map((student) => student.email);
 

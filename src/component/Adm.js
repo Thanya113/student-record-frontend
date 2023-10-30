@@ -8,7 +8,7 @@ import ViewPage from './ViewPage.js';
 import DownloadPage from './DownloadPage.js';
 import Contact from './Contact.js';
 
-axios.defaults.baseURL = 'http://localhost:8081/';
+axios.defaults.baseURL = 'https://student-server-tamd.onrender.com/';
 
 const Container = styled.div`
   * {

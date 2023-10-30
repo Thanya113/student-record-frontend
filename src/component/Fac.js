@@ -213,7 +213,7 @@ function Fac() {
     // Fetch the list of students from the server
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/fetchStudents');
+        const response = await axios.get('https://student-server-tamd.onrender.com/fetchStudents');
         if (response.data.success) {
           setStudents(response.data.data);
         } else {
@@ -312,7 +312,7 @@ function Fac() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8081/fac?userId=${userId}`);
+      const response = await axios.get(`https://student-server-tamd.onrender.com/fac?userId=${userId}`);
       if (response.data.success) {
         setFacultyDetails(response.data.data);
       } else {

@@ -8,7 +8,7 @@ const DownloadPage = () => {
   const handleDownload = async () => {
     try {
         const fullFilename = `${filename}.pdf`;
-      const response = await axios.get(`http://localhost:8081/stud/download/${encodeURIComponent(fullFilename)}`, {
+      const response = await axios.get(`https://student-server-tamd.onrender.com/stud/download/${encodeURIComponent(fullFilename)}`, {
         responseType: 'arraybuffer', // Set responseType to 'arraybuffer'
       });
 

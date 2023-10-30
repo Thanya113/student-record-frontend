@@ -74,7 +74,7 @@ const Faculty = () => {
 // Inside handleLogin function in Faculty.js
 const handleLogin = async () => {
   try {
-    const response = await axios.post('http://localhost:8081/faculty-login', {
+    const response = await axios.post('https://student-server-tamd.onrender.com/faculty-login', {
       email: email,
       fid: fid,
     });
