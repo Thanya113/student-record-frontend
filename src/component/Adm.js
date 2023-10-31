@@ -7,7 +7,7 @@ import AdmLogout from './AdmLogout';
 import ViewPage from './ViewPage.js';
 import DownloadPage from './DownloadPage.js';
 import Contact from './Contact.js';
-import Admc from './Admc';
+
 axios.defaults.baseURL = 'https://student-server-tamd.onrender.com/';
 
 const ContactAdmcContainer = styled.div`
@@ -534,7 +534,7 @@ function Adm() {
         <br />
         <ContactAdmcContainer>
           <Contact />
-          <Admc />
+          
         </ContactAdmcContainer>
       </div>
       
