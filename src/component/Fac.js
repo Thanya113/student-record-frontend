@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
+
 import FacLogout from './FacLogout'; 
 import UploadPage from './UploadPage';
 import ViewPage from './ViewPage';
@@ -10,6 +11,45 @@ import DownloadPage from './DownloadPage';
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"> </link>
 const Container = styled.div`
 /* Fac.css */
+font-family: 'Poppins', sans-serif;
+background-color: #c2d2bd;
+color: ;
+overflow: hidden;
+position: relative;
+
+.header {
+  background-color: #45818e;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.main-content {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.faculty-details-container,
+.fac-container {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.faculty-details-container {
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 /* Add a Google Font link in your HTML file for the desired font-family */
 
@@ -183,6 +223,7 @@ tbody button:hover {
 }
 
 
+
 `;
 
 function Fac() {
@@ -330,7 +371,10 @@ useEffect(() => {
 
 
   return (
+    
     <Container>
+   
+ 
       <FacLogout /> 
       {facultyDetails !== null && (
   <div className="faculty-details-container">
@@ -457,6 +501,7 @@ useEffect(() => {
       </div>
      
       </Container>
+    
     );
 }
 

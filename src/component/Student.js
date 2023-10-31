@@ -9,28 +9,36 @@ const colorAnimation = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
-
 const Container = styled.div`
+  display: flex;
+  height: 90vh;
+`;
+
+const ImageContainer = styled.div`
+  flex: 1;
+  background: url('https://media.istockphoto.com/id/1361844238/photo/high-school-professor-assisting-her-students-in-e-learning-on-laptop-in-the-classroom.jpg?s=612x612&w=0&k=20&c=RUI6d64h2mszvH2CicmeSCp_sZowN1p81dtuctGIaRM=') center/cover;
+`;
+
+const FormContainer = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
   background: linear-gradient(45deg, #6A5ACD, #87CEEB, #6A5ACD);
   background-size: 400% 400%;
   animation: ${colorAnimation} 15s infinite;
   font-family: 'Poppins', sans-serif;
 `;
 
-const FormContainer = styled.div`
-  max-width: 400px; /* Increase the max-width */
+const InnerFormContainer = styled.div`
+  max-width: 400px;
   width: 100%;
-  padding: 30px; /* Increase padding for more space */
+  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
-
 const Title = styled.h2`
   text-align: center;
   color: #333;
@@ -110,7 +118,9 @@ const Student = () => {
 
   return (
     <Container>
+      <ImageContainer />
       <FormContainer>
+        <InnerFormContainer>
         <Title>Student Login</Title>
         <form onSubmit={handleLogin}>
           <InputContainer>
@@ -144,6 +154,7 @@ const Student = () => {
             Login
           </Button>
         </form>
+        </InnerFormContainer>
       </FormContainer>
     </Container>
   );

@@ -494,6 +494,7 @@ function Adm() {
         <ViewPage />
         <DownloadPage />
         <Contact />
+       
       </div>
     </Container>
   );
