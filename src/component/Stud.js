@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import LogoutButton from './LogoutButton'; 
 import DownloadPage from './DownloadPage';
 import ViewPage from './ViewPage';
-import Stdc from './Stdc';
+import Stdc from './Stdc.js';
+
 const Container = styled.div`
   .cssst {
     max-width: 800px;
