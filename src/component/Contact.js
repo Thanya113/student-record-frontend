@@ -49,12 +49,15 @@ const Contact = () => {
     <StyledContactForm>
       <form ref={form} onSubmit={sendEmail}>
         {/* Remove user_name and user_email inputs */}
-       <bold><label>Message To Students</label></bold> 
+       <bold><label>Message To Students  📧</label></bold> 
         <textarea name="message" />
         
        
-
         <input type="submit" value="Send Email" />
+ 
+
+
+
       </form>
     </StyledContactForm>
   );
@@ -66,7 +69,7 @@ export default Contact;
 // Styles
 const StyledContactForm = styled.div`
   width: 400px;
-
+  margin-left: 20px;
   form {
     display: flex;
     align-items: flex-start;

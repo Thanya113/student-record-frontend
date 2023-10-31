@@ -7,10 +7,30 @@ import AdmLogout from './AdmLogout';
 import ViewPage from './ViewPage.js';
 import DownloadPage from './DownloadPage.js';
 import Contact from './Contact.js';
-
+import Admc from './Admc';
 axios.defaults.baseURL = 'https://student-server-tamd.onrender.com/';
 
+const ContactAdmcContainer = styled.div`
+display: flex;
+flex-direction: column;
+
+@media only screen and (min-width: 768px) {
+  flex-direction: row;
+  align-items: flex-start; /* Adjust the alignment */
+  justify-content: space-between;
+}
+  }
+`;
 const Container = styled.div`
+@media only screen and (max-width: 768px) {
+  // ... responsive styles ...
+}
+
+// Center the Admc component
+display: flex;
+flex-direction: column;
+align-items: center;
+
   * {
     box-sizing: border-box;
   }
@@ -117,6 +137,24 @@ const Container = styled.div`
     background-color: #fa1717;
     color: white;
   }
+  @media only screen and (max-width: 768px) {
+    .addContainer form {
+      width: 100%; // Adjust the width for smaller screens
+      padding: 15px; // Adjust padding for smaller screens
+    }
+    .tableContainer table thead tr th,
+    .tableContainer table tbody tr td {
+      min-width: auto; // Remove min-width for smaller screens
+      padding: 5px; // Adjust padding for smaller screens
+      font-size: 14px; // Adjust font size for smaller screens
+    }
+    .btn-edit,
+    .btn-delete {
+      font-size: 14px; // Adjust font size for smaller screens
+      padding: 3px 8px; // Adjust padding for smaller screens
+    }
+  }
+  
 `;
 function Adm() {
   const [addStudentSection, setAddStudentSection] = useState(false);
@@ -493,9 +531,13 @@ function Adm() {
         </div>
         <ViewPage />
         <DownloadPage />
-        <Contact />
-       
+        <br />
+        <ContactAdmcContainer>
+          <Contact />
+          <Admc />
+        </ContactAdmcContainer>
       </div>
+      
     </Container>
   );
 }
