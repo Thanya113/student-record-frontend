@@ -39,13 +39,12 @@ const InnerFormContainer = styled.div`
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
+
 const Title = styled.h2`
   text-align: center;
   color: #333;
   margin-bottom: 20px;
 `;
-
-
 
 const InputContainer = styled.div`
   display: flex;
@@ -76,6 +75,16 @@ const Icon = styled.i`
   margin-right: 8px;
 `;
 
+const ErrorMessage = styled.div`
+  color: #ff0000;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
+
 const Student = () => {
   const navigate = useNavigate();
 
@@ -83,6 +92,8 @@ const Student = () => {
     roll: '',
     name: '',
   });
+
+  const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -94,25 +105,26 @@ const Student = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
 
     try {
       const response = await axios.post('/login', formData);
 
       if (response.data.success) {
         const userId = response.data.userId;
-
         const studDetailsResponse = await axios.get(`/stud?userId=${userId}`);
 
         if (studDetailsResponse.data.success) {
           navigate(`/stud?userId=${userId}`);
         } else {
-          alert('Student not found');
+          setError('Student not found');
         }
       } else {
-        alert('Wrong login credentials');
+        setError('Wrong login credentials');
       }
     } catch (error) {
       console.error('Error during login:', error);
+      setError('An error occurred during login');
     }
   };
 
@@ -121,39 +133,37 @@ const Student = () => {
       <ImageContainer />
       <FormContainer>
         <InnerFormContainer>
-        <Title>Student Login</Title>
-        <form onSubmit={handleLogin}>
-          <InputContainer>
-            
+          <Title>Student Login</Title>
+          <form onSubmit={handleLogin}>
+            <InputContainer>
               <Icon className="fas fa-id-card" />
               Roll No:
-            
-            <Input
-              type="text"
-              id="roll"
-              name="roll"
-              value={formData.roll}
-              onChange={handleInputChange}
-            />
-          </InputContainer>
-          <InputContainer>
-            
+              <Input
+                type="text"
+                id="roll"
+                name="roll"
+                value={formData.roll}
+                onChange={handleInputChange}
+              />
+            </InputContainer>
+            <InputContainer>
               <Icon className="fas fa-user" />
               Name:
+              <Input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </InputContainer>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
             
-            <Input
-              type="text"
-              id="name"
-              name="name" 
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-          </InputContainer>
-          <Button type="submit">
-            <Icon className="fas fa-sign-in-alt" />
-            Login
-          </Button>
-        </form>
+            <Button type="submit">
+              <Icon className="fas fa-sign-in-alt" />
+              Login
+            </Button>
+          </form>
         </InnerFormContainer>
       </FormContainer>
     </Container>
