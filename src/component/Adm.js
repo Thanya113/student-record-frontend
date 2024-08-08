@@ -7,7 +7,7 @@ import AdmLogout from './AdmLogout';
 import ViewPage from './ViewPage.js';
 import DownloadPage from './DownloadPage.js';
 import Contact from './Contact.js';
-
+//import Admchat from '../pages/Admchat';
 
 axios.defaults.baseURL = 'https://student-server-tamd.onrender.com/';
 
@@ -25,6 +25,7 @@ flex-direction: column;
 const Container = styled.div`
 @media only screen and (max-width: 768px) {
   // ... responsive styles ...
+  
 }
 
 // Center the Admc component
