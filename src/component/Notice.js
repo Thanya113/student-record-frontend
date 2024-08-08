@@ -28,8 +28,6 @@ const Notice = () => {
 
   return (
     <div className="main-container">
-      
-     
         <div className="column">
         <h2>📰 Campus</h2>
         <div className="scroll-container">
