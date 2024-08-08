@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled,{keyframes} from 'styled-components';
+import { GoogleLogin } from 'react-google-login';
+import { useEffect } from 'react';
+import {gapi} from 'gapi-script';
+const clientId = "413667319877-37kad773q1377kmoll20rabn9k83hr4a.apps.googleusercontent.com"
  
 const colorAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -69,11 +73,17 @@ const Icon = styled.i`
   margin-right: 8px;
 `;
 
+
 const ErrorMessage = styled.div`
-  color: red;
+  color: #ff0000; /* Bright red color for better visibility */
+  background-color: #ffe6e6; /* Light red background */
+  padding: 10px; /* Add padding for spacing */
+  border-radius: 5px; /* Rounded corners */
   text-align: center;
   margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add a slight shadow for depth */
 `;
+
 
 const Admin = () => {
   const [username, setUsername] = useState('');
@@ -88,6 +98,29 @@ const Admin = () => {
       setError('Enter valid username and password');
     }
   };
+
+  const handleGoogleLogin = (response) => {
+    // Handle Google login success or failure here
+   
+      console.log('Google login success:', response);
+      // Only navigate to '/adm' on successful Google login
+      navigate('/adm');
+    
+  };
+  useEffect(() => {
+    const handleLoad = () => {
+      // Handle library load
+    };
+  
+    const handleError = (error) => {
+      console.error('Google API library load error:', error);
+    };
+  
+    gapi.load('client:auth2', { callback: handleLoad, onError: handleError });
+  }, []);
+  
+  
+  
 
   return (
     <CenteredContainer> <ImageContainer>
@@ -105,13 +138,28 @@ const Admin = () => {
           <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+      
         <Button onClick={handleLogin}>
           <Icon className="fas fa-sign-in-alt" />
           Login
         </Button>
-        </div>
+        <br />
+        <br/>
+        <center>
+        <GoogleLogin
+              clientId={clientId}
+              buttonText="Login with Google"
+              onSuccess={handleGoogleLogin}
+              onFailure={handleGoogleLogin}
+              cookiePolicy={'single_host_origin'}
+              redirectUri="http://localhost:3000"  
+          
+            /></center>
+      
+        </div>    
         </FormWrapper>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+      
       </FormContainer>
     </CenteredContainer>
   );
