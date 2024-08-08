@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import LogoutButton from './LogoutButton'; 
 import DownloadPage from './DownloadPage';
 import ViewPage from './ViewPage';
-
+//import Stdc from '../pages/Stdc';
 
 const Container = styled.div`
   .cssst {
@@ -265,7 +265,7 @@ return (
       <ViewPage />
        <DownloadPage />
     </div>
-
+  
     </Container>
   
   );
