@@ -1,24 +1,36 @@
-import styled from 'styled-components';
-import { FaUser, FaGraduationCap, FaChalkboardTeacher,FaLinkedin, FaYoutube, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { FaUser, FaGraduationCap, FaChalkboardTeacher, FaLinkedin, FaYoutube, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+
+const slideInFromBottom = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const FooterContainer = styled.footer`
-  background-color:  #a35de4 ;
+  background-color: #a35de4;
   color: #fff;
-  padding: 20px 0;
+  padding: 40px 0;
   position: relative;
 `;
 
 const FooterSection = styled.div`
   flex: 1;
   margin-right: 20px;
+  animation: ${slideInFromBottom} 0.5s ease-in-out forwards;
 `;
 
-const FooterHeading = styled.h4`
-  font-size: 1.2em;
-  border-bottom: 1px solid  #a35de4;
-  padding-bottom: 5px;
-  display: center;
-  align-items: center;
+const FooterHeading = styled.h2`
+  font-size: 1.5em;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 10px;
+  text-align: center;
 `;
 
 const FooterList = styled.ul`
@@ -34,20 +46,22 @@ const FooterLink = styled.a`
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: #ffc107;
+  }
 `;
 
 const FooterInfo = styled.div`
-  margin-top: 20px;
-  
+  margin-top: 30px;
+  text-align: center;
 `;
 
-const FooterIcon = styled.span`
-  margin-right: 5px;
-`;
 const SocialMediaIcons = styled.div`
   position: absolute;
-  bottom: 15px;
-  right: 25px;
+  bottom: 20px;
+  right: 20px;
   display: flex;
   align-items: center;
 
@@ -58,36 +72,26 @@ const SocialMediaIcons = styled.div`
     transition: color 0.3s ease-in-out;
 
     &:hover {
-      color: #ffc107; /* Change color on hover */
+      color: #ffc107;
     }
   }
 `;
+
 const ContactDetails = styled.div`
   position: absolute;
-  bottom: 15px;
-  left: 25px;
-  display: flex;
-  flex-direction: column;
-  font-weight :bold;
-  align-items: flex-start;
-
-  & > * {
-    margin-bottom: 5px;
-    font-size: 1em;
-  }
+  bottom: 20px;
+  left: 20px;
+  font-weight: bold;
+  color: #fff;
 `;
-
 
 const Footer = () => {
   return (
     <FooterContainer>
-         <center>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <FooterSection>
-           
           <FooterHeading>
-            <h2><FooterIcon><FaUser/></FooterIcon>
-            Admin</h2>
+            <FaUser /> Admin
           </FooterHeading>
           <FooterList>
             <FooterListItem><FooterLink href="/Admin">Login</FooterLink></FooterListItem>
@@ -99,22 +103,19 @@ const Footer = () => {
 
         <FooterSection>
           <FooterHeading>
-          <h2><FooterIcon><FaGraduationCap /></FooterIcon>
-           Student</h2>
+            <FaGraduationCap /> Student
           </FooterHeading>
           <FooterList>
             <FooterListItem><FooterLink href="/Student">Login</FooterLink></FooterListItem>
             <FooterListItem><FooterLink href="/Student">Personal Info</FooterLink></FooterListItem>
             <FooterListItem><FooterLink href="/Student">Check Results</FooterLink></FooterListItem>
             <FooterListItem><FooterLink href="/Student">View/Download Syllabus</FooterLink></FooterListItem>
-
           </FooterList>
         </FooterSection>
 
         <FooterSection>
           <FooterHeading>
-            <h2><FooterIcon><FaChalkboardTeacher /></FooterIcon>
-            Faculty</h2>
+            <FaChalkboardTeacher /> Faculty
           </FooterHeading>
           <FooterList>
             <FooterListItem><FooterLink href="/Faculty">Login</FooterLink></FooterListItem>
@@ -122,35 +123,23 @@ const Footer = () => {
             <FooterListItem><FooterLink href="/Faculty">Manage Results</FooterLink></FooterListItem>
             <FooterListItem><FooterLink href="/Faculty">Manage Syllabus</FooterLink></FooterListItem>
           </FooterList>
-         
         </FooterSection>
       </div>
-      </center>
+
       <FooterInfo>
-        <center>
-        <h4>SNT COLLEGE OF ENGINEERING</h4>
-        <h4>DEPARTMENT OF INFORMATION TECHNOLOGY</h4>
-        <h4>PERUNDURAI, ERODE - 638053</h4>
-        </center>
+        <h3>SNT COLLEGE OF ENGINEERING</h3>
+        <p>DEPARTMENT OF INFORMATION TECHNOLOGY</p>
+        <p>PERUNDURAI, ERODE - 638053</p>
       </FooterInfo>
+
       <SocialMediaIcons>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-          <FaLinkedin />
-        </a>
-        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-          <FaYoutube />
-        </a>
-        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-          <FaTwitter />
-        </a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-          <FaInstagram />
-        </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-          <FaFacebook />
-        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
       </SocialMediaIcons>
-      {/* Contact Details */}
+
       <ContactDetails>
         <p>Phone: +1 234 567 890</p>
         <p>Email: info@example.com</p>
