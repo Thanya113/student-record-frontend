@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Navbar from './component/Navbar';
-import Home from './component/Home';
 import Achieve from './component/Achieve';
 import Admin from './component/Admin';
 import Adm from './component/Adm';
@@ -25,7 +24,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LayoutWithNavbar><Hom /><Home /></LayoutWithNavbar>} />
+        <Route path="/" element={<LayoutWithNavbar><Hom /></LayoutWithNavbar>} />
         <Route path="/achieve" element={<LayoutWithNavbar><Achieve /></LayoutWithNavbar>} />
         <Route path="/admin" element={<LayoutWithNavbar><Admin /></LayoutWithNavbar>} />
         <Route path="/adm" element={<LayoutWithoutNavbar><Adm /></LayoutWithoutNavbar>} />
