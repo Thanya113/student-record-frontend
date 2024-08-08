@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 
-// ... (existing imports)
-
 const colorAnimation = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
+
 const Container = styled.div`
   display: flex;
   height: 90vh;
@@ -31,11 +30,6 @@ const FormContainer = styled.div`
   animation: ${colorAnimation} 15s infinite;
 `;
 
-// ... (rest of the code remains unchanged)
-
-
-
-
 const LoginForm = styled.div`
   max-width: 400px;
   width: 100%;
@@ -44,7 +38,6 @@ const LoginForm = styled.div`
   border-radius: 5px;
   background-color: #fce8ec; /* Light pink pastel background color */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
- 
 `;
 
 const Title = styled.h2`
@@ -75,55 +68,73 @@ const Button = styled.button`
 const Icon = styled.i`
   margin-right: 8px;
 `;
-// ... (existing imports)
+
+const ErrorMessage = styled.div`
+  color: #ff0000;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
 
 const Faculty = () => {
   const [email, setEmail] = useState('');
   const [fid, setFid] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-// Inside handleLogin function in Faculty.js
-const handleLogin = async () => {
-  try {
-    const response = await axios.post('https://student-server-tamd.onrender.com/faculty-login', {
-      email: email,
-      fid: fid,
-    });
+  const handleLogin = async () => {
+    setError('');
 
-    if (response.data.success) {
-      const facultyId = response.data.facultyId;
-      navigate(`/fac?userId=${facultyId}`);
-    } else {
-      alert('Wrong credentials. Please try again.');
+    try {
+      const response = await axios.post('https://student-server-tamd.onrender.com/faculty-login', {
+        email: email,
+        fid: fid,
+      });
+
+      if (response.data.success) {
+        const facultyId = response.data.facultyId;
+        navigate(`/fac?userId=${facultyId}`);
+      } else {
+        setError('Wrong credentials. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during faculty login:', error);
+      setError('Error during faculty login. Please try again.');
     }
-  } catch (error) {
-    console.error('Error during faculty login:', error);
-    alert('Error during faculty login. Please try again.');
-  }
-};
-
-
-
-
+  };
 
   return (
     <Container>
       <ImageContainer />
       <FormContainer>
-      <LoginForm>
-        <Title>Faculty Login</Title>
-        <div>
-          <Icon className="fas fa-user" />
-          <Input type="text" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div>
-          <Icon className="fas fa-lock" />
-          <Input type="password" placeholder="Password" value={fid} onChange={(e) => setFid(e.target.value)} />
-        </div>
-        <Button onClick={handleLogin}>
-          <Icon className="fas fa-sign-in-alt" />
-          Login
-        </Button>
+        <LoginForm>
+          <Title>Faculty Login</Title>
+          <div>
+            <Icon className="fas fa-user" />
+            <Input
+              type="text"
+              placeholder="Username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <Icon className="fas fa-lock" />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={fid}
+              onChange={(e) => setFid(e.target.value)}
+            />
+          </div>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          <Button onClick={handleLogin}>
+            <Icon className="fas fa-sign-in-alt" />
+            Login
+          </Button>
         </LoginForm>
       </FormContainer>
     </Container>
