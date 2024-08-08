@@ -1,7 +1,10 @@
 import React from 'react';
 import './Hom.css';
+import './Home.css'; //footer css
 import Notice from './Notice.js';
 import Placement from './Placement';
+import Footer from './Footer';
+
 const Hom = () => {
   return (
     <>
@@ -76,6 +79,8 @@ https://cdn.pixabay.com/photo/2017/09/01/13/56/university-2704306_960_720.jpg
      <br/>
      <Placement />
      <br />
+     <Footer />
+
    
     </>
   );
